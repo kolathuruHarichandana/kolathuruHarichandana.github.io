@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>New Arrivals - Cake Bake</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #fffaf0;
+      text-align: center;
+    }
+
+    .header {
+      background-color: #ff4d4d;
+      display: flex;
+      align-items: center;
+      padding: 10px 5%;
+    }
+
+    .logo img {
+      width: 80px;
+      border-radius: 50%;
+      margin-right: 200px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .navbar ul li {
+      display: inline;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: #ffd700;
+    }
+@media (max-width: 768px) {
+        .navbar ul {
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: center; /* Center items */
+    }
+
+    .logo img {
+        margin-right: 0; /* Remove margin for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .cake-container {
+        grid-template-columns: repeat(1, 1fr); /* 1 cake per row for mobile */
+    }
+
+    .navbar ul {
+        gap: 10px; /* Reduce gap for smaller screens */
+    }
+
+    .navbar ul li a {
+        font-size: 1rem; /* Smaller font size for mobile */
+    }
+
+  }
+
+
+    .menu-title {
+      margin: 50px 0 20px;
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    .menu-title span {
+      color: #ff4d4d;
+      font-style: italic;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .menu-item {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 280px;
+      padding: 15px;
+      transition: transform 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .menu-item h3 {
+      color: #ff4d4d;
+      font-size: 1.3rem;
+      margin: 10px 0;
+    }
+
+    .menu-item p {
+      font-size: 0.9rem;
+      color: black;
+    }
+
+    .price {
+      font-weight: bold;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .order-btn {
+      background-color: #ff4d4d;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .order-btn:hover {
+      background-color: #e65c00;
+    }
+/* ===== ORDER MODAL STYLING ===== */
+        .order-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 245, 245, 0.8);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            animation: fadeIn 0.4s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .order-content {
+            background: #fff0f5;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: slideUp 0.4s ease-in-out;
+            margin: 40px 0;
+        }
+
+        .order-content h2 {
+            color: #d94c63;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .order-form label {
+            font-weight: 600;
+            color: #444;
+        }
+
+        .order-form input,
+        .order-form select,
+        .order-form textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            background: #fff;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .order-form input:focus,
+        .order-form textarea:focus,
+        .order-form select:focus {
+            border-color: #ff4d4d;
+            box-shadow: 0 0 5px #ff4d4d66;
+        }
+
+        .order-form button {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .order-form button:hover {
+            background: #e03e3e;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        /* Disable body scroll when modal is open */
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Order Success Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+            animation: slideInRight 0.4s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .error-message {
+            color: #e03e3e;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="header">
+    <div class="logo">
+      <a href="cake2.html"><img src="logo1.jpeg" alt="Logo"></a>
+    </div>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cakes.html">Cakes</a></li>
+        <li><a href="new.html">New Arrivals</a></li>
+        <li><a href="About1.html">About</a></li>
+        <li><a href="Review.html">Review</a></li>
+        <li><a href="c.html">Contact</a></li>
+        <li><a href="login1.html">Login</a></li>
+        <li><a href="sign Up.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- New Arrivals Section -->
+  <h2 class="menu-title"><span>New Arrivals</span></h2>
+
+  <div class="menu-container">
+    <div class="menu-item">
+      <img src="ct.jpg" alt="Chocolate Truffle">
+      <h3>Chocolate Truffle</h3>
+      <p>Decadent chocolate cake with ganache layers.</p>
+      <p class="price">₹299.00</p>
+      <button class="order-btn">Order Now</button>
+    </div>
+
+    <div class="menu-item">
+      <img src="rm.jpg" alt="Rose Milk Cake">
+      <h3>Rose Milk Cake</h3>
+      <p>Soft sponge infused with rose milk flavor.</p>
+      <p class="price">₹280.00</p>
+      <button class="order-btn">Order Now</button>
+    </div>
+
+    <div class="menu-item">
+      <img src="o.jpg" alt="Oreo Overload">
+      <h3>Oreo Overload</h3>
+      <p>Cookies & cream layered cake with Oreo chunks.</p>
+      <p class="price">₹310.00</p>
+      <button class="order-btn">Order Now</button>
+    </div>
+<div class="menu-item">
+  <img src="Mini.jpg" alt="Amber Mini Bliss">
+  <h3> Mini Bliss</h3>
+  <p class="price">₹340.00</p>
+  <p class="mini-quote">"Sweetness that fits in your palm."</p>
+  <button class="order-btn">Order Now</button>
+</div>
+
+
+        <div class="menu-item">
+      <img src="Ras.jpg" alt="Rasmalai Cake">
+      <h3>Rasmalai Fusion Cake</h3>
+      <p>Indian fusion cake soaked in rasmalai syrup.</p>
+      <p class="price">₹360.00</p>
+      <button class="order-btn">Order Now</button>
+    </div>
+
+    <div class="menu-item">
+      <img src="cb.jpg" alt="Chocolate Biscoff Cake">
+      <h3>Choco-Biscoff</h3>
+      <p>Chocolate meets caramel biscoff in this delight.</p>
+      <p class="price">₹350.00</p>
+      <button class="order-btn">Order Now</button>
+    </div>
+  </div>
+<!-- Order Modal -->
+    <div class="order-modal" id="orderModal">
+        <div class="order-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Place Your Order</h2>
+            
+            <form class="order-form" id="orderForm">
+                <input type="hidden" id="selectedCake" value="">
+                
+                <label for="weight">Select Quantity:</label>
+                <select id="weight" required>
+                    <option value="">Choose...</option>
+                    <option value="0.5kg">1/2 Kg</option>
+                    <option value="1kg">1 Kg</option>
+                    <option value="2kg">2 Kg</option>
+                </select>
+                <div class="error-message" id="weightError">Please select a quantity</div>
+
+                <label for="toppings">Toppings:</label>
+                <select id="toppings">
+                    <option value="">Choose...</option>
+                    <option value="Choco chips">Choco Chips</option>
+                    <option value="Fruits">Fruits</option>
+                    <option value="Sprinkles">Sprinkles</option>
+                    <option value="Nuts">Nuts</option>
+                    <option value="No Toppings">No Toppings</option>
+                </select>
+                <div class="error-message" id="toppingsError">Please select a topping option</div>
+
+                <label for="message">Message on Cake:</label>
+                <input type="text" id="message" placeholder="e.g. Happy Birthday!" />
+
+                <label for="specifications">Any Specifications:</label>
+                <textarea id="specifications" rows="2" placeholder="Tell us your preferences..."></textarea>
+
+                <label for="name">Customer Name:</label>
+                <input type="text" id="name" required placeholder="Your Name" />
+                <div class="error-message" id="nameError">Please enter your name</div>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" required placeholder="10-digit Mobile Number" />
+                <div class="error-message" id="phoneError">Please enter a valid 10-digit phone number</div>
+
+                <label for="address">Delivery Address:</label>
+                <textarea id="address" rows="3" required placeholder="Enter full address..."></textarea>
+                <div class="error-message" id="addressError">Please enter your delivery address</div>
+
+                <button type="submit">Confirm Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Success Notification -->
+    <div class="notification" id="orderNotification">
+        Your order has been placed successfully! We'll contact you shortly to confirm the details.
+    </div>
+
+    <script>
+        const modal = document.getElementById("orderModal");
+        const orderBtns = document.querySelectorAll(".order-btn");
+        const orderForm = document.getElementById("orderForm");
+        const notification = document.getElementById("orderNotification");
+        const selectedCakeInput = document.getElementById("selectedCake");
+
+        // Open modal and pass cake name
+        orderBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                // Get the cake name from data attribute
+                const cakeName = btn.getAttribute("data-cake");
+                selectedCakeInput.value = cakeName;
+                
+                // Show modal and prevent body scrolling
+                modal.style.display = "flex";
+                document.body.classList.add("modal-open");
+            });
+        });
+
+        // Close modal
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.classList.remove("modal-open");
+            // Reset form
+            orderForm.reset();
+            // Hide all error messages
+            document.querySelectorAll(".error-message").forEach(el => {
+                el.style.display = "none";
+            });
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        };
+
+        // Form validation and submission
+        orderForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            // Get form fields
+            const weight = document.getElementById("weight").value;
+            const toppings = document.getElementById("toppings").value;
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const address = document.getElementById("address").value;
+            
+            // Reset error messages
+            document.querySelectorAll(".error-message").forEach(el => {
+                el.style.display = "none";
+            });
+            
+            // Validate form
+            let isValid = true;
+            
+            if (!weight) {
+                document.getElementById("weightError").style.display = "block";
+                isValid = false;
+            }
+            
+            if (!toppings) {
+                document.getElementById("toppingsError").style.display = "block";
+                isValid = false;
+            }
+            
+            if (!name) {
+                document.getElementById("nameError").style.display = "block";
+                isValid = false;
+            }
+            
+            if (!phone || !/^\d{10}$/.test(phone)) {
+                document.getElementById("phoneError").style.display = "block";
+                isValid = false;
+            }
+            
+            if (!address) {
+                document.getElementById("addressError").style.display = "block";
+                isValid = false;
+            }
+            
+            // If form is valid, submit and show notification
+            if (isValid) {
+                // Here you would typically send the data to a server
+                // For now, we'll just close the modal and show success message
+                
+                // Close modal
+                closeModal();
+                
+                // Show notification
+                notification.style.display = "block";
+                
+                // Hide notification after 5 seconds
+                setTimeout(() => {
+                    notification.style.display = "none";
+                }, 5000);
+            }
+        });
+    </script>
+
+
+</body>
+</html>

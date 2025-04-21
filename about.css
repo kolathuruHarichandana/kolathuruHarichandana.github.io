@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* About Us Section */
+#about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 10%;
+    background-color: #fff;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 1600px;
+    background: white;
+    padding: 20px;
+}
+
+.about-images {
+    display: flex;
+    gap: 20px;
+}
+
+.about-images img {
+    width: 250px;
+    border-radius: 10px;
+    animation: floatUpDown 3s ease-in-out infinite;
+}
+
+/* Image Animation: Up and Down */
+@keyframes floatUpDown {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.about-content {
+    max-width: 500px;
+    padding: 20px;
+    border: 2px solid #d4a373;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-content h3 {
+    font-size: 1.2rem;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.about-content h2 {
+    font-family: 'Cursive', serif ,italic;
+    color: #a67c52;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    margin-top:10px;
+}
+
+.about-content p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Stats Section */
+#stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f8f8;
+    padding: 50px 10%;
+}
+
+.stats-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+    gap: 40px;
+}
+
+/* Numbers in one line */
+.stats-container {
+    display: flex;
+    gap: 40px;
+    flex-wrap: nowrap;
+}
+
+.stat {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 150px;
+}
+
+.stat h2 {
+    font-size: 2rem;
+    color: #a67c52;
+    margin-bottom: 5px;
+}
+
+.stat p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Text beside the numbers */
+.stats-text {
+    max-width: 400px;
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+.promise-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fffaf5;
+}
+
+.promise-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #a67c00;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.promise-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/* Each box styling */
+.promise-box {
+    max-width: 250px;
+    text-align: center;
+}
+
+/* Icons styling */
+.icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Headings */
+.promise-box h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #a67c00;
+    margin-bottom: 10px;
+}
+
+/* Paragraph */
+.promise-box p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+}
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column; /* Stack images and content vertically */
+        align-items: center; /* Center align items */
+    }
+
+    .about-images {
+        flex-direction: column; /* Stack images vertically */
+        align-items: center; /* Center align images */
+    }
+
+    .about-images img {
+        width: 100%; /* Make images responsive */
+        max-width: 300px; /* Limit max width for images */
+    }
+
+    .about-content {
+        max-width: 90%; /* Make content take more width on smaller screens */
+    }
+
+    .stats-wrapper {
+        flex-direction: column; /* Stack stats vertically */
+        align-items: center; /* Center align stats */
+    }
+
+    .stats-container {
+        flex-direction: column; /* Stack stats items vertically */
+        gap: 20px; /* Reduce gap for smaller screens */
+    }
+
+    .stat {
+        width: 100%; /* Make stats take full width */
+        max-width: 200px; /* Limit max width for stats */
+    }
+
+    .promise-container {
+        flex-direction: column; /* Stack promise boxes vertically */
+        align-items: center; /* Center align promise boxes */
+    }
+
+    .promise-box {
+        max-width: 90%; /* Make promise boxes take more width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .about-content h2 {
+        font-size: 1.5rem; /* Adjust title size for smaller screens */
+    }
+
+    .about-content p {
+        font-size: 0.9rem; /* Adjust paragraph size for smaller screens */
+    }
+
+    .promise-title {
+        font-size: 20px; /* Adjust promise title size for smaller screens */
+    }
+
+    .promise-box h3 {
+        font-size: 14px; /* Adjust promise box heading size for smaller screens */
+    }
+
+    .promise-box p {
+        font-size: 12px; /* Adjust promise box paragraph size for smaller screens */
+    }
+}

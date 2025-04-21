@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f8f8f8;
+}
+
+/* HEADER: Flexbox for proper alignment */
+.header {
+    background-color: #ff4d4d;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 10px 5%;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* LOGO: Properly sized */
+.logo img {
+    width: 80px; /* Adjust as needed */
+    height: auto;
+    border-radius: 50%;
+    margin-right: 300px; /* Adjust for smaller screens */
+}
+
+/* NAVBAR: Flexbox alignment */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Adjust spacing */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* NAVBAR LINKS */
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #ffd700;
+}
+
+/* Horizontal Line */
+.separator {
+    width: 80%;
+    margin: 20px auto;
+    border: 2px solid #ff6f61; /* Change color as per your theme */
+}
+
+/* Popular Cakes Section */
+.popular-cakes {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff8e1; /* Light background */
+}
+
+/* Section Title */
+.popular-cakes h2 {
+    font-size: 2rem;
+    color: #d32f2f;
+}
+
+/* Fix Cake Layout: 3 Cakes Per Row */
+.cake-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cakes per row */
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    max-width: 900px; /* Set a max width to avoid stretching */
+    margin: auto; /* Center the grid */
+    padding: 20px;
+}
+
+/* Individual Cake Styling */
+.cake {
+    text-align: center;
+    border-radius: 0px;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cake img {
+    width: 130px;
+    height: auto;
+    border-radius: 0px;
+}
+
+/* Responsive Design: Adjust for Smaller Screens */
+@media (max-width: 768px) {
+    .cake-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 cakes per row */
+    }
+
+    .navbar ul {
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: center; /* Center items */
+    }
+
+    .logo img {
+        margin-right: 0; /* Remove margin for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .cake-container {
+        grid-template-columns: repeat(1, 1fr); /* 1 cake per row for mobile */
+    }
+
+    .navbar ul {
+        gap: 10px; /* Reduce gap for smaller screens */
+    }
+
+    .navbar ul li a {
+        font-size: 1rem; /* Smaller font size for mobile */
+    }
+
+    .hero h1 {
+        font-size: 50px; /* Adjust hero title size */
+    }
+
+    .hero p {
+        font-size: 16px; /* Adjust hero paragraph size */
+        padding-right: 0; /* Remove padding */
+    }
+
+    .buy-btn {
+        padding: 10px 20px; /* Adjust button size */
+        font-size: 16px; /* Adjust button font size */
+    }
+
+    .gallery-title span {
+        font-size: 2rem; /* Adjust gallery title size */
+        padding-left: 0; /* Remove padding */
+    }
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    background: url('background.jpg') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+}
+
+.hero h1 {
+    font-size: 100px;
+    font-family: 'Brush Script MT', cursive;
+}
+
+.hero p {
+    font-size: 20px;
+    margin: 20px 0;
+    padding-right:400px;
+}
+
+.buy-btn {
+    background: #d4a373;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration:none;
+}
+
+.gallery-title span {
+    font-size: 2.5rem;
+    color: black;
+    font-style: italic;
+    text-align: center;
+    padding-left:660px;
+}
+
+/* GALLERY GRID */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+    gap: 15px;
+    padding: 20px;
+    max-width: 700px;
+    margin: auto;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.gallery-item img {
+    width: 90%;
+    height: 80%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.order-btn {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.order-btn:hover {
+    background-color: #e65c00;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 images per row on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: repeat(1, 1fr); /* 1 image per row on mobile */
+    }
+}
+
+.footer {
+    background: #fff;
+    color: black;
+    padding: 40px 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.newsletter {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.newsletter input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    flex: 1;
+}
+
+.newsletter button {
+    background: #d4a373;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    color: black;
+    font-size: 20px;
+}
+
+.payments {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.flavours-section {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.flavours-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.line {
+    flex: 1;
+    height: 2px;
+    background-color: black;
+    margin: 0 10px;
+}
+
+.flavours-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.flavour-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid #ddd;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.flavour-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.offers-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    background-color: #f0f0f0;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.offers {
+    display: flex;
+    gap: 20px;
+    animation: slide 10s linear infinite;
+}
+
+.offer {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #e0ffe0;
+    margin: 0 10px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.offers-container:hover .offers {
+    animation-play-state: paused;
+}
